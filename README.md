@@ -14,6 +14,8 @@ The controller then compared the reference and feedback signals and adjusted the
 
 ## System Architecture
 
+![Closed-loop DC motor controller system block diagram](images/system-block-diagram.png)
+
 The main signal path was:
 
 **Reference Voltage → Error Detection → Controller → NMOS Motor Driver → DC Motor**
@@ -73,15 +75,31 @@ This allowed small error signals to create a much larger motor-control signal.
 
 The complete controller was simulated in LTspice before hardware testing.
 
+### Circuit Simulation
+
+![LTspice simulation of the motor controller](images/ltspice-circuit.png)
+
+### Simulated Response
+
+![Simulated controller response](images/simulation-response.png)
+
 The simulation was used to verify that the feedback voltage followed changes in the reference voltage and that the controller responded correctly when the requested motor speed changed.
 
 ## Testing and Results
 
 The completed system successfully tracked the requested speed setpoints under no-load conditions.
 
+### No-Load Testing
+
+![Oscilloscope measurement during no-load testing](images/no-load-test.png)
+
 Under moderate loading, the controller automatically increased its output to compensate for the reduction in motor speed while maintaining stable operation.
 
 Under heavy loading near the motor's limit, the system could no longer maintain the requested speed within the desired accuracy. This helped identify limitations associated with the available motor torque, controller output, and motor-driver configuration.
+
+### Load Testing
+
+![Oscilloscope measurement during load testing](images/load-test.png)
 
 ## What I Learned
 
